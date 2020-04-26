@@ -37,3 +37,9 @@ def car_list(request):
 	return render(request,'car_list.html',{
 			'cars':Car.objects.all()
 		})
+
+def car_details(request,car_billing_number):
+	return render(request,'car_details.html',{
+			'car':Car.objects.get(billing_number = car_billing_number)
+		})
+
