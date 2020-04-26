@@ -1,8 +1,9 @@
 from django.shortcuts import render,HttpResponse
 from django.views.generic import TemplateView
-
 from django.http import HttpResponseRedirect
 from .forms import NameForm
+from .forms import CarForm
+from .models import Car
 
 # Create your views here.
 def get_name(request):
@@ -20,3 +21,19 @@ def home(request):
 
 def thanks(request):
 	return HttpResponse("Data received")
+
+def add_car(request):
+	if request.method == 'POST':
+		form = CarForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponse('car added to the database')
+	else:
+		form  = CarForm()
+
+	return render(request,'add_car.html', {'car_form':form})
+
+def car_list(request):
+	return render(request,'car_list.html',{
+			'cars':Car.objects.all()
+		})
