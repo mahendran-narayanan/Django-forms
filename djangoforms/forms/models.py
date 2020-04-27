@@ -11,3 +11,7 @@ class Car(models.Model):
 	serial_number = models.BigIntegerField()
 	mfg_date = models.DateTimeField()
 	shipping_date = models.DateTimeField()
+
+class Data(models.Model):
+	name = models.CharField(max_length=25)
+	age = models.IntegerField()

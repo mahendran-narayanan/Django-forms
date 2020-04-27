@@ -1,26 +1,21 @@
 from django.shortcuts import render,HttpResponse
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
-from .forms import NameForm
-from .forms import CarForm
-from .models import Car
+from .forms import CarForm,DataForm
+from .models import Car,Data
 
 # Create your views here.
-def get_name(request):
+def add_data(request):
 	if request.method == 'POST':
-		form = NameForm(request.POST)
+		form = DataForm(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('thanks/')
+			form.save()
+			return HttpResponse('Data added to DB')
 	else:
-		form = NameForm()
-	return render(request, 'name.html', {'form':form})
+		form = DataForm()
+	return render(request, 'add_data.html', {'data_form':form})
 
-def home(request):
-	template = 'home.html'
-	return render(request,'home.html',{})
 
-def thanks(request):
-	return HttpResponse("Data received")
 
 def add_car(request):
 	if request.method == 'POST':
