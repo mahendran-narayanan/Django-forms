@@ -1,0 +1,14 @@
+
+<table style="border:1px solid black">
+	<tr>
+		<td>Name</td>
+		<td>Age</td>
+	</tr>
+	{% for d in data %}
+	<tr>
+		<td>{{ d.name }}</td>
+		<td>{{ d.age }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
