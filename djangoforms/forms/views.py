@@ -5,11 +5,20 @@ from .forms import DataForm
 from .models import Data
 
 # Create your views here.
+def work():
+	p = Data.objects.all().last()
+	if (p.age>20 and p.age<25):
+		p.sal = p.age*10000
+	elif (p.age>25):
+		p.sal = p.age*100000
+	p.save()
+	print(p.sal)
 def add_data(request):
 	if request.method == 'POST':
 		form = DataForm(request.POST)
 		if form.is_valid():
 			form.save()
+			work()
 			return HttpResponse('Data added to DB')
 	else:
 		form = DataForm()

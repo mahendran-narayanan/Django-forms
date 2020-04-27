@@ -5,4 +5,4 @@ from django.forms import ModelForm
 class DataForm(ModelForm):
 	class Meta:
 		model = Data
-		exclude = ()
+		exclude = ['sal']
